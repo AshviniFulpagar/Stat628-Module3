@@ -60,7 +60,7 @@ write.csv(user_clean,"user_clean.csv",row.names=FALSE)
 ########## 4. clean tip.json ###########
 tip_clean = tip[which(tip$business_id %in% business_clean$business_id),]
 ## write clean .csv file "tip_clean.csv"
-write.csv(user_clean,"tip_clean.csv",row.names=FALSE)
+write.csv(tip_clean,"tip_clean.csv",row.names=FALSE)
 
 
 ########### read the clean data #########
