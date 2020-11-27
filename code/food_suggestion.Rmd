@@ -1,0 +1,88 @@
+---
+title: "food_suggestion"
+author: "Luyang Fang"
+date: "2020/11/26"
+output: html_document
+---
+
+```{r include=FALSE}
+rm(list=ls())
+library(dplyr)
+library(tidytext)
+library(tidyr)
+library(ggplot2)
+library(reshape2)
+library(wordcloud)
+```
+
+
+## read data
+
+```{r}
+review = read.csv("../clean_data/Chinese/review_Chinese.csv")
+business = read.csv("../clean_data/Chinese/business_Chinese.csv")
+```
+
+## filter
+```{r}
+review_num = business$review_count
+quantile(review_num)
+# 50%(?) (# of review>22)
+business_filter = business[review_num>quantile(review_num)[3],]
+```
+
+
+```{r}
+foodList = read.csv("foodList_12.csv")
+```
+
+
+## suggestion
+
+### function
+```{r}
+# ID: business_id
+# data: whole review data
+# List: wordList
+FoodSugg = function(ID,data,List){
+  Sugg = data.frame(Suggestion=rep(NA,length(List)))
+  rownames(Sugg) = List
+  rev = data[data$business_id==ID,]
+  for (i in 1:length(List)){
+    word = List[i]
+    ind = grep(word,rev$text,ignore.case=TRUE)
+    if (length(ind)<5){ # less than 5 (?)
+      Sugg[i,] = paste("We do not have enough information to give suggestion about ",word,sep='')
+    }else{
+      review_food = rev[ind,]
+      mean_star = mean(review_food$stars)
+      if (mean_star<2){
+        Sugg[i,] = paste("Your performance on ",word," is poor, please pay attention to making improvement.",sep='')
+      }else if (mean_star<4) {
+        Sugg[i,] = paste("Your performance on ",word," is ok, but you can also make effort to make it better.",sep='')
+      }else {
+         Sugg[i,] = paste("Your performance on ",word," is great! Please keep that.",sep='')
+      }
+    }
+  }
+  return(Sugg)
+}
+```
+
+
+### main
+```{r}
+ID_all = business_filter[order(business_filter$review_count,decreasing = T),]$business_id[1:50] # try first 50 business 
+# ID_all = business_filter$business_id[1:50]
+data = review
+List = as.character(foodList$word)
+
+suggestion = list()
+for (j in 1:length(ID_all)){
+  ID = ID_all[j]
+  suggestion[[ID]] = FoodSugg(ID,data,List)
+}
+```
+
+
+
