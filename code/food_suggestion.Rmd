@@ -16,7 +16,7 @@ library(wordcloud)
 ```
 
 
-## read data
+##  read data
 
 ```{r}
 review = read.csv("../clean_data/Chinese/review_Chinese.csv")
