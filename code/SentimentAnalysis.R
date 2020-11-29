@@ -1,10 +1,16 @@
+## ------------
+rm(list = ls())
+
 library(tidytext)
 library(dplyr)
-
-
+library(Matrix)
+library(pluralize)
+## ----------------------------------
 # To get the distribution of stars for a word in review data
 getDistr <- function(word, dataset){
-  index = grep(word, dataset$text)
+  dataset$text = tolower(dataset$text)
+  word = paste(word,"|",singularize(word),"|",pluralize(word),sep="")
+  index = grep(word, dataset$text,ignore.case = TRUE)
   if(length(index)==0)
   {
     print("word not detected.")
@@ -37,21 +43,44 @@ mostFreq <- function(dataset, maxrownum)
   return(cleaned_wordlist[1:maxrownum,])
 }
 
+## -------------------------------------
 
-keyword = "food"
+business_id = "HVpwpXneaCWMeEBF7H8jpQ"
 
-business_id = "7j0kor_fkeYhyEpXh4OpnQ"
+wordlist = read.csv(file ="wordList_V2.csv")
 
+dataReview = read.csv("../clean_data/Chinese/review_Chinese.csv")
+dataBusiness = read.csv("../clean_data/Chinese/business_filter.csv")
 
-# Read the data, you can also change these two lines to read .csv files
-dataReview = readRDS(file = "reviewDATA")
-dataBusiness = readRDS(file = "businessDATA")
+## ---------------------------------
 
 
 Reviews  = dataReview[which(dataReview$business_id==business_id),]
 
+frequentword = mostFreq(Reviews,100)
+word = c()
+i=1
+count=0
+while(i<100){
+  
+  if(frequentword$word[i] %in% wordlist$word)
+  {
+    word = rbind(word, frequentword[i,])
+    count = count+1
+  }
+    if(count==30){
+      break}
+  i=i+1
+}
 
 
+# Read the data, you can also change these two lines to read .csv files
+# dataReview = readRDS(file = "reviewDATA")
+# dataBusiness = readRDS(file = "businessDATA")
+
+
+for(keyword in word$word)
+{
 freq1 = getDistr(keyword,Reviews)
 sample1 = rep(1:5, freq1)
 freq2 = getDistr(keyword, dataReview)
@@ -66,29 +95,25 @@ if(sum(freq1)==0){
   elements[c(1,3,5,7,9)]=freq1/sum(freq1)
   elements[c(2,4,6,8,10)]=freq2/sum(freq2)
 
-  barplot(elements,
-          names.arg = c("1","1","2","2","3","3","4","4","5","5"),
-          col = c(1,2,1,2,1,2,1,2),
-          xlab = "stars",
-          ylab = "frequency",
-          space = c(0.3,0,0.3,0,0.3,0,0.3,0,0.3,0),
-          legend.text = c("This shop", "Average"),
-          ylim = c(0,min(max(elements)*1.5,1))
-  ) 
+#  barplot(elements,
+#          names.arg = c("1","1","2","2","3","3","4","4","5","5"),
+#          col = c(1,2,1,2,1,2,1,2),
+#          xlab = "stars",
+#          ylab = "frequency",
+#          space = c(0.3,0,0.3,0,0.3,0,0.3,0,0.3,0),
+#          legend.text = c("This shop", "Average"),
+#          ylim = c(0,min(max(elements)*1.5,1))
+#  ) 
 
   # Do the Wilcoxon Rank Sum and Signed Rank Test
-  pvalue <- wilcox.test(sample1,sample2)$p.value %>% 
-    print  
+  pvalue1 = wilcox.test(sample1,sample2,alternative = "less")$p.value
+  pvalue2 = wilcox.test(sample1,sample2,alternative = "greater")$p.value
+  pvalue = wilcox.test(sample1,sample2)$p.value
 
-  # The significance level
-  threshold = 0.05 
+#    giveSuggestion(keyword, pvalue1, pvalue2)
+    cat(keyword,pvalue, pvalue1,pvalue2,"\n")
 
-  
-  if(pvalue < threshold){
-    print("We can give suggestion based on this key word")
-  }else{
-    print("This keyword is not significant enough.")
-  }
   
 }
-
+}
+wordcloud(word$word,word$count)
