@@ -1,12 +1,15 @@
 rm(list=ls())
-setwd("C:/Users/karlc/Desktop/Stat628-Module3")
-#Using package
+
+#The working directory is "Stat628-Module3/code", please running the shiny in the right dictionrctory on just
+#running its on web.
+
+#Using package in shiny
 library(leaflet)
 library(shiny)
 library(dplyr)
 #Loading required information
-business_chinese<-read.csv("./clean_data/chinese/business_filter.csv")
-review = read.csv("./clean_data/Chinese/review_Chinese.csv")
+business_chinese<-read.csv("../clean_data/chinese/business_filter.csv")
+review = read.csv("../clean_data/Chinese/review_Chinese.csv")
 business_chinese<-business_chinese[business_chinese$city=="Madison",]
 id<-business_chinese$business_id
 name<-business_chinese$name
