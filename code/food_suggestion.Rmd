@@ -33,7 +33,7 @@ business_filter = business[review_num>quantile(review_num)[3],]
 
 
 ```{r}
-foodList = read.csv("foodList_12.csv")
+foodList = read.csv("../wordlist/foodList_12.csv")
 ```
 
 
