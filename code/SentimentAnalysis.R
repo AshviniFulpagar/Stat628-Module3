@@ -1,10 +1,12 @@
 ## ------------
 rm(list = ls())
-
 library(tidytext)
 library(dplyr)
 library(Matrix)
 library(pluralize)
+library(wordcloud)
+#Our working directory in this part is "Stat628-Module3/code", if the directory is not the same,
+#please use setwd() function to change the directory.
 ## ----------------------------------
 # To get the distribution of stars for a word in review data
 getDistr <- function(word, dataset){
@@ -47,7 +49,7 @@ mostFreq <- function(dataset, maxrownum)
 
 business_id = "HVpwpXneaCWMeEBF7H8jpQ"
 
-wordlist = read.csv(file ="wordList_V2.csv")
+wordlist = read.csv(file ="../wordList/wordList_V2.csv")
 
 dataReview = read.csv("../clean_data/Chinese/review_Chinese.csv")
 dataBusiness = read.csv("../clean_data/Chinese/business_filter.csv")
