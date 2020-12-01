@@ -59,7 +59,7 @@ dataBusiness = read.csv("../clean_data/Chinese/business_filter.csv")
 
 Reviews  = dataReview[which(dataReview$business_id==business_id),]
 
-#In this turn, we choose top 16 key words to make 4*4=16 barplots, if you like, you can increase/decrease the key
+#In this turn, we choose top 16 key words to make 2*(3*3)=18 barplots, if you like, you can increase/decrease the key
 #words count.(But it may need to change par() function below.)
 frequentword = mostFreq(Reviews,100)
 word = c()
@@ -72,8 +72,8 @@ while(i<100){
     word = rbind(word, frequentword[i,])
     count = count+1
   }
-    if(count==18){
-      break}
+  if(count==18){
+    break}
   i=i+1
 }
 
@@ -105,23 +105,23 @@ if(sum(freq1)==0){
   elements = rep(0,10)
   elements[c(1,3,5,7,9)]=freq1/sum(freq1)
   elements[c(2,4,6,8,10)]=freq2/sum(freq2)
-
-barplot(elements,
-names.arg = c("1","1","2","2","3","3","4","4","5","5"),
-col = c(1,2,1,2,1,2,1,2),
-xlab = "stars",
-ylab = "frequency",
-space = c(0.3,0,0.3,0,0.3,0,0.3,0,0.3,0),
-main=keyword,
-ylim = c(0,min(max(elements)*1.5,1))) 
-legend("topleft",c("This shop", "Average"),cex=0.8,fill=c("black","red"))
+  
+  barplot(elements,
+          names.arg = c("1","1","2","2","3","3","4","4","5","5"),
+          col = c(1,2,1,2,1,2,1,2),
+          xlab = "stars",
+          ylab = "frequency",
+          space = c(0.3,0,0.3,0,0.3,0,0.3,0,0.3,0),
+          main=keyword,
+          ylim = c(0,min(max(elements)*1.5,1))) 
+  legend("topleft",c("This shop", "Average"),cex=0.8,fill=c("black","red"))
   # Do the Wilcoxon Rank Sum and Signed Rank Test
   pvalue1[i] = wilcox.test(sample1,sample2,alternative = "less")$p.value
   pvalue2[i] = wilcox.test(sample1,sample2,alternative = "greater")$p.value
   pvalue [i]= wilcox.test(sample1,sample2)$p.value
-
-
-
+  
+  
+  
 }
 }
 
@@ -155,6 +155,3 @@ cat("You have good performance in the following aspects:",'\n',
     paste(advantage,collapse=', '),'\n')
 cat("Your performance seems worse than the average level of other restaurants in the following aspects:",'\n',
     paste(disadvantage,collapse=', '),'\n')
-
-
-
