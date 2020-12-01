@@ -119,3 +119,6 @@ if(sum(freq1)==0){
 }
 }
 wordcloud(word$word,word$count)
+
+#Reviews <- paste0("The customers focus on" word$word[1], "most in this restaurant.")
+#Suggestions <- paste0("The restaurant's owner should focus on" word$word[1], "to improve their service.")
