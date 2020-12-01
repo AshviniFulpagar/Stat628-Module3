@@ -1,0 +1,139 @@
+---
+title: "wordList"
+author: "Luyang Fang"
+date: "2020/11/25"
+output: html_document
+---
+
+```{r include=FALSE}
+rm(list=ls())
+library(dplyr)
+library(tidytext)
+library(tidyr)
+library(ggplot2)
+library(reshape2)
+library(wordcloud)
+library(pluralize)
+# library(textclean)
+```
+
+## read data
+
+```{r}
+review = read.csv("../clean_data/Chinese/review_Chinese.csv")
+business = read.csv("../clean_data/Chinese/business_Chinese.csv")
+```
+
+
+## pre-processing
+
+```{r}
+review$text = gsub("hot pot","hotpot",review$text,ignore.case=T)
+review$text = gsub("spring roll","spring-roll",review$text,ignore.case=T)
+review$text = gsub("_"," ",review$text,ignore.case=T)
+# review$text = gsub("."," ",review$text,ignore.case=T)
+# write.csv(review,"../clean_data/Chinese/review_Chinese_new.csv")
+```
+
+
+
+## tranfer into token
+
+```{r}
+text_df <- tibble(review[,c(1,3,4,8)])
+# text_df$text = singularize(text_df$text)
+tidy_text = text_df %>% unnest_tokens(word,text) # tokenization
+tidy_text = anti_join(tidy_text,stop_words) # remove stop words
+tidy_text = anti_join(tidy_text,sentiments) # sentiments
+```
+
+
+### count
+
+```{r}
+count_0 = tidy_text %>%
+  count(word, sort = TRUE) %>%
+  mutate(word=reorder(word, n)) # 30045
+# singularize
+for (i in 1:length(count_0$word)){
+  count_0$word[i] = singularize(count_0$word[i])
+}
+# combine
+agg = aggregate(n~word,count_0,sum)
+count =  agg[order(agg$n,decreasing = T),] %>% 
+  mutate(word=reorder(word, n))# 24584
+
+head(count,20)
+## plot first 20
+count %>% 
+  head(20) %>%
+  ggplot(aes(n, word)) +
+  geom_col() +
+  labs(y = NULL)
+# write.csv(count,"wordList_original.csv",row.names=F)
+```
+
+
+### word cloud
+```{r}
+count %>% 
+  with(wordcloud(word, n, max.words = 100))
+```
+
+## decide wordList
+
+```{r}
+# according to colnames in business.csv
+name = colnames(business)
+name_new = gsub("attribute.","",name)[12:51]
+try = c("attire","takeout","credit","noise","kid","reservation","groups","parking","price","tv","alcohol","bike","delivery","appointment","outdoor","wifi","wheel","ambience","byob","music","dog","dance","age","smoking","smoke","service")
+sum(try %in% count$word) # 23
+count[count$word %in% try,]
+```
+
+```{r}
+# according to word frenquency
+list = count[count$n>500,] # 383
+# write.csv(list,"freq500.csv",row.names=FALSE)
+sum(try %in% list$word) # 6
+list %>% 
+  with(wordcloud(word, n, max.words = 100))
+
+```
+
+
+
+```{r}
+dele = c("chinese","restaurant","time","dish","menu","eat","person","flavor","taste","portion","table","lot","star","asian","quality","bit","minute","2","5","tasty","day","special","3","option","tasted","item","10","home","eating","customer","cooked","hour","4","visit","pittsburgh","huge","told","found","feel","1","piece","inside","house","madison","coming","left","selection","choice","green","white","china","decided","check","extra","half","husband","amount","highly","called","week","size","average","looked","couple","ate","pick","real","expect","15","offer","absolutely","business","close","eaten","kitchen","pay","hand","wife","extremely","standard","money","spring","20","street","bite","30","fan","cook","typical","return","call","finally","bring","reason","regular","6","arrived","red","brought","sit","ago","yelp","front","lady","stop","door","started","guy","past","traditional","add","surprised","seated","wall","type","main","care","prepared","ton","month","stopped","plenty","8","filling","drive","brown","yummy","run","live","waited","start","black","walked","ice","hope","texture","7","late","remember","city","sitting","expected","local","mind","recently","boyfriend","walk","completely","short","choose","low","empty","hungry","seating","rest","understand","honestly","added","sunday","mixed","speak","english","slightly","leftover","life","saturday","simple","filled","including","tonight","level","woman","usual","chance","sign","min","changed","mouth","received","note","paid","downtown","weekend","thick","friday","moved","offered","picture","combination","totally","establishment","heard")
+
+list_2 = list[-which(list$word %in% dele),] # 191
+# write.csv(list_2,"wordList_V2.csv",row.names=F)
+
+list_2 %>% 
+  with(wordcloud(word, n, max.words = 100))
+```
+
+
+
+## filter
+```{r}
+review_num = business$review_count
+hist(review_num,breaks=50,
+     xlab="Review number",main="Histogram of review number")
+hist(review_num[review_num<50],breaks=10,
+     xlab="Review number",main="Histogram of review number")
+quantile(review_num)
+# 50%(?) (# of review>22)
+business_filter = business[review_num>quantile(review_num)[3],]
+write.csv(business_filter,"business_filter.csv",row.names=F)
+```
+
+
+## foodList
+```{r}
+# list of food people talk a lot, 
+# maybe business should pay attention to those food
+# foodList = list_2[c(2,5,6,11,13,17,19,20,22,39,41,43),]
+# write.csv(foodList,"foodList_12.csv",row.names=F)
+```
+
