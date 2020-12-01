@@ -5,6 +5,7 @@ library(dplyr)
 library(Matrix)
 library(pluralize)
 library(wordcloud)
+#install.packages("stopwords")
 #Our working directory in this part is "Stat628-Module3/code", if the directory is not the same,
 #please use setwd() function to change the directory.
 ## ----------------------------------
@@ -47,12 +48,12 @@ mostFreq <- function(dataset, maxrownum)
 
 ## -------------------------------------
 
-business_id = "HVpwpXneaCWMeEBF7H8jpQ"
+business_id = "8cjXEmuqgCbIRudb2D52qw"
 
-wordlist = read.csv(file ="../wordList/wordList_V2.csv")
+wordlist = read.csv(file ="/Users/ashvini/Desktop/Fall2020/Stat628/Module3/Test/wordList/wordList_V2.csv")
 
-dataReview = read.csv("../clean_data/Chinese/review_Chinese.csv")
-dataBusiness = read.csv("../clean_data/Chinese/business_filter.csv")
+dataReview = read.csv("/Users/ashvini/Desktop/Fall2020/Stat628/Module3/Test/clean_data/Chinese/review_Chinese.csv")
+dataBusiness = read.csv("/Users/ashvini/Desktop/Fall2020/Stat628/Module3/Test/clean_data/Chinese/business_filter.csv")
 
 ## ---------------------------------
 
@@ -79,8 +80,8 @@ while(i<100){
 # Read the data, you can also change these two lines to read .csv files
 # dataReview = readRDS(file = "reviewDATA")
 # dataBusiness = readRDS(file = "businessDATA")
-
-
+df<- c() 
+suggest <- data.frame(matrix(nrow = 30, ncol = 3))
 for(keyword in word$word)
 {
 freq1 = getDistr(keyword,Reviews)
@@ -88,37 +89,31 @@ sample1 = rep(1:5, freq1)
 freq2 = getDistr(keyword, dataReview)
 sample2 = rep(1:5,freq2)
 
-if(sum(freq1)==0){
-  print("This keyword is not detected in the reviews")
-}else{
-  
-  # Elements for barplot
-  elements = rep(0,10)
-  elements[c(1,3,5,7,9)]=freq1/sum(freq1)
-  elements[c(2,4,6,8,10)]=freq2/sum(freq2)
-
-#  barplot(elements,
-#          names.arg = c("1","1","2","2","3","3","4","4","5","5"),
-#          col = c(1,2,1,2,1,2,1,2),
-#          xlab = "stars",
-#          ylab = "frequency",
-#          space = c(0.3,0,0.3,0,0.3,0,0.3,0,0.3,0),
-#          legend.text = c("This shop", "Average"),
-#          ylim = c(0,min(max(elements)*1.5,1))
-#  ) 
+    if(sum(freq1)==0){
+      print("This keyword is not detected in the reviews")
+    }else{
+      # Elements for barplot
+      elements = rep(0,10)
+      elements[c(1,3,5,7,9)]=freq1/sum(freq1)
+      elements[c(2,4,6,8,10)]=freq2/sum(freq2)
 
   # Do the Wilcoxon Rank Sum and Signed Rank Test
-  pvalue1 = wilcox.test(sample1,sample2,alternative = "less")$p.value
-  pvalue2 = wilcox.test(sample1,sample2,alternative = "greater")$p.value
-  pvalue = wilcox.test(sample1,sample2)$p.value
-
-#    giveSuggestion(keyword, pvalue1, pvalue2)
-    cat(keyword,pvalue, pvalue1,pvalue2,"\n")
-
-  
+      pvalue1 = wilcox.test(sample1,sample2,alternative = "less")$p.value
+      pvalue2 = wilcox.test(sample1,sample2,alternative = "greater")$p.value
+      pvalue = wilcox.test(sample1,sample2)$p.value
+      suggest <- cbind.data.frame(keyword,pvalue, pvalue1, pvalue2)
+      df <- bind_rows(df, suggest ) # dataframe to collect all of the keywords and pvalues 
+    }
 }
+
+for (i in 1:length(df$pvalue))
+{
+if(((df$pvalue[i]) <= 0.560292789))
+  {
+     cat(df$keyword[i],  "performs above average. ", "\n" )
+  } 
 }
+
+dev.new(width = 1000, height = 1000, unit = "px")
 wordcloud(word$word,word$count)
 
-#Reviews <- paste0("The customers focus on" word$word[1], "most in this restaurant.")
-#Suggestions <- paste0("The restaurant's owner should focus on" word$word[1], "to improve their service.")
