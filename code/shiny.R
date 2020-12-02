@@ -83,7 +83,7 @@ mostFreq <- function(dataset, maxrownum)
 ui <- navbarPage("Yelp data analysis",id="main",
                  tabPanel("Yelp Map",leafletOutput("mymap",height = "800px",width="100%"),
                           ),
-                 tabPanel("Yelp Star in the City",
+                 tabPanel("Customer Reviews",
                           p(h3("Yelp customer Reviews")),
                           br(),
                           p(h4(textOutput("hhh1"))),
@@ -120,7 +120,7 @@ ui <- navbarPage("Yelp data analysis",id="main",
                           p(h5("3.If the socre is in 10-90, it shows this aspect is in the average level, we suggest the owner should plan some methods to improve this aspect.")),
                           p(h5("4.If the socre is in 0-10, it indicates this aspect is worse than the average level, we suggest the business owner should solve this problem immediately.")),
                           br(),
-                          p(h3("Suggestion and Score")),
+                          p(h3("Suggestions and Scores")),
                           p(h4(textOutput("hhh2"))),
                           br(),
                           p(h4(textOutput("ot1"))),
@@ -136,7 +136,7 @@ ui <- navbarPage("Yelp data analysis",id="main",
                           p(h4(textOutput("ot11"))),
                           p(h4(textOutput("ot12"))),
                           ),
-                 tabPanel("GUIDE",includeMarkdown("../clean_data/chinese/README2.md"))
+                 tabPanel("GUIDE",includeMarkdown("Shiny Readme.md"))
 )
 
 ## ----------------------------------
