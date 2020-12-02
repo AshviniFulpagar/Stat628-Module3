@@ -2,6 +2,10 @@
 
 **Yelp data analysis**
 
+- all scripts of the projects can be found at [code](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/code)
+- clean data is stored at
+[clean_data](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/clean_data)
+
 Updata 2020/12/1:
 
 Please use the data in "data_V2.zip" for the analysis after data pre-processing part.
