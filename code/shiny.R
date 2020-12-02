@@ -23,7 +23,7 @@ business_chinese<-business_chinese[-(business_chinese$business_id=="IXP6VfjiUFIR
 review = read.csv("../clean_data/Chinese/review_Chinese_new.csv")
 wordlist = read.csv(file ="../wordList/wordList_V2.csv")
 
-business_chinese<-business_chinese[business_chinese$city=="Madison",]
+
 id<-business_chinese$business_id
 name<-business_chinese$name
 state<-business_chinese$state
@@ -81,7 +81,8 @@ mostFreq <- function(dataset, maxrownum)
 ##Shiny User interface 
 
 ui <- navbarPage("Yelp data analysis",id="main",
-                 tabPanel("Yelp Map",leafletOutput("mymap",height=900,width="100%")),
+                 tabPanel("Yelp Map",leafletOutput("mymap",height = "800px",width="100%"),
+                          ),
                  tabPanel("Yelp Star in the City",
                           p(h3("Yelp customer Reviews")),
                           br(),
@@ -112,6 +113,7 @@ ui <- navbarPage("Yelp data analysis",id="main",
                           plotOutput("bar12")),
                  tabPanel("Business Suggestions",
                           p(h3("The tips on business suggestions")),
+                          helpText("It may need about one minute to generate results. Please wait for a while"),
                           br(),
                           p(h5("1.We use scores based on Wilcoxon rank test results and giving each key aspects of this restaurant a socre.")),
                           p(h5("2.If the socre is in 90-100, it means this key aspect in this restaurent is pretty good. We suggest the business owner should keep this advantage.")),
