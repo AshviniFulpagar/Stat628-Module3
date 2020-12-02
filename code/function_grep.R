@@ -6,6 +6,7 @@ rm(list=ls())
 library(rjson)
 library(jsonlite)
 
+# the following 4 datasets are raw data and are not included in our github repository
 business = jsonlite::stream_in(file("../data/business_city.json"))
 user = jsonlite::stream_in(file("../data/user_city.json"))
 tip = jsonlite::stream_in(file("../data/tip_city.json"))
@@ -43,6 +44,6 @@ data_grep = function(name){
 }
 
 
-data_grep("Chinese")
+data_grep("Chinese") # we use this dataset in our following analysis
 data_grep("wine")
 data_grep("breakfast")
