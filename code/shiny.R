@@ -427,7 +427,7 @@ server<-shinyServer(function(input, output) {
     sample2.12 = rep(1:5,freq2.12)
     elements.12 = rep(0,10)
     elements.12[c(1,3,5,7,9)] = freq1.12/sum(freq1.12)
-    elements.12[c(2,4,6,8,10)] = freq2.2/sum(freq2.12)
+    elements.12[c(2,4,6,8,10)] = freq2.12/sum(freq2.12)
     
     output$bar12 = renderPlot(barplot(elements.12,
                                      names.arg = c("1","1","2","2","3","3","4","4","5","5"),
@@ -441,6 +441,8 @@ server<-shinyServer(function(input, output) {
 
     #Suggestion score
     score<-pvalue1*100
+    score<-sprintf("%0.1f", score)
+    score<-as.numeric(score)
     output$hhh2<-renderText(paste0("The Score is based on Wilcoxon Rank Test from ",RC," effective reviews about ",p1$id, " on Yelp."))
     output$ot1<-renderText(paste0("The ",word$word[1]," aspect score is ", score[1]))
     output$ot2<-renderText(paste0("The ",word$word[2]," aspect score is ", score[2]))
@@ -453,7 +455,7 @@ server<-shinyServer(function(input, output) {
     output$ot9<-renderText(paste0("The ",word$word[9]," aspect score is ", score[9]))
     output$ot10<-renderText(paste0("The ",word$word[10]," aspect score is ", score[10]))
     output$ot11<-renderText(paste0("The ",word$word[11]," aspect score is ", score[11]))
-    output$ot12<-renderText(paste0("The ",word$word[11]," aspect score is ", score[12]))
+    output$ot12<-renderText(paste0("The ",word$word[12]," aspect score is ", score[12]))
     })
 })
 
