@@ -15,13 +15,13 @@ library(wordcloud)
 ## ----------------------------------
 #Loading required data set and do data processing
 #Loading dataset
-business_chinese<-read.csv("../clean_data/chinese/business_filter.csv")
+business_chinese<-read.csv("../data/clean_data/chinese/business_filter.csv")
 business_chinese<-business_chinese[-(business_chinese$business_id=="SWDEdiv_v1QppobT1YnEPA"),]
 business_chinese<-business_chinese[-(business_chinese$business_id== "t4rBeSFDfwvaIbLftLlhig"),]
 business_chinese<-business_chinese[-(business_chinese$business_id=="POJH4cPxgKCWWGVYJ_2i0w"),]
 business_chinese<-business_chinese[-(business_chinese$business_id=="IXP6VfjiUFIRiRbZjeUulw"),]
-review = read.csv("../clean_data/Chinese/review_Chinese_new.csv")
-wordlist = read.csv(file ="../wordList/wordList_V2.csv")
+review = read.csv("../data/clean_data/Chinese/review_Chinese_new.csv")
+wordlist = read.csv(file ="../data/wordList/wordList_V2.csv")
 
 
 id<-business_chinese$business_id
