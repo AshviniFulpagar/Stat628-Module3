@@ -3,9 +3,11 @@
 **Yelp data analysis**
 
 Updata 2020/12/1:
+
 Please use the data in "data_V2.zip" for the analysis after data pre-processing part.
 
 Updata 2020/11:
+
 The directory "clean_data" stores the data we grep from the whole dataset used for our analysis.
 
 
