@@ -1,32 +1,26 @@
-# Stat628-Module3
-
-**Yelp data analysis**
-
-- all scripts of the projects can be found at [code](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/code)
-- clean data is stored at
-[clean_data](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/clean_data)
-
-Updata 2020/12/1:
-
-Please use the data in ./data/clean_data/Chinese for the analysis after data pre-processing part.
-
-Updata 2020/11:
-
-The directory "clean_data" stores the data we grep from the whole dataset used for our analysis.
+# Yelp Reviews Sentiment Analysis : Stat628-Module3
 
 
-**Process:**
+##  Overview
+- All scripts of the project can be found at [code](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/code)
+- All of the data is stored at
+[data](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/data)
+-  data directory has [clean_data](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/data/clean_data) and [Wordlist](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/data/wordList) which we have used for further sentiment analysis.
+- [Image](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/Image) directory has graphs and other images created while performing analysis
 
-*Data pre-processing part:*
-
-1. Based on "./code/function_grep.R" to get the clean_data "review_Chinese.csv", "business_Chinese.csv". (grep business and corresponding reviews with a specific category you are interested in)
-
-2. Based on "./code/wordList.RMD" to get the new reviews file "review_Chinese_new.csv"
-
-3. Based on "./code/wordList.RMD" to realize NLP and get "wordList_V2.csv"(contains the list of words which will be used in the following analysis)
-
-4. Based on "./code/wordList.RMD" to get the new "business_filter.csv" file. (filter some businesses with little reviews)
+- Code for Shiny app can be found in at [shiny](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/shiny.R), pelase refer [ShinyReadme](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/Shiny%20Readme.md)
 
 
-*Further analysis:*
+## How to run the code
 
+- By Using [function_grep.R](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/function_grep.R) you can get the [data/clean_data](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/data/clean_data), and [review_Chinese.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/review_Chinese_new.csv)
+
+- Further by using [wordList.RMD](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/wordList.Rmd) to get  [business_filter.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/business_filter.csv) file. (filter some businesses with little reviews) and
+[wordList_V2.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/wordList/wordList_V2.csv)which contains the list of words which will be used in the following analysis.
+
+- Shiny uses [data/clean_data/chinese/business_filter.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/business_filter.csv), [data/clean_data/Chinese/review_Chinese_new.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/review_Chinese_new.csv) and 
+[data/wordList/wordList_V2.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/wordList/wordList_V2.csv) as an input data files.
+
+## Shiny Link
+
+[Shiny app for Yelp Map](https://qingchuan-ji.shinyapps.io/STAT628-module3-qingchuan-ji/)
