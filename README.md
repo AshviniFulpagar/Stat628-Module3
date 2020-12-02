@@ -8,7 +8,7 @@
 
 Updata 2020/12/1:
 
-Please use the data in "data_V2.zip" for the analysis after data pre-processing part.
+Please use the data in ./data/clean_data/Chinese for the analysis after data pre-processing part.
 
 Updata 2020/11:
 
