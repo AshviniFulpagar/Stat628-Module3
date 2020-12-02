@@ -19,13 +19,13 @@ The directory "clean_data" stores the data we grep from the whole dataset used f
 
 *Data pre-processing part:*
 
-1. Based on "function_grep.R" to get the clean_data "review_Chinese.csv", "business_Chinese.csv". (grep business and corresponding reviews with a specific category you are interested in)
+1. Based on "./code/function_grep.R" to get the clean_data "review_Chinese.csv", "business_Chinese.csv". (grep business and corresponding reviews with a specific category you are interested in)
 
-2. Based on "wordList.RMD" to get the new reviews file "review_Chinese_new.csv"
+2. Based on "./code/wordList.RMD" to get the new reviews file "review_Chinese_new.csv"
 
-3. Based on "wordList.RMD" to realize NLP and get "wordList_V2.csv"(contains the list of words which will be used in the following analysis)
+3. Based on "./code/wordList.RMD" to realize NLP and get "wordList_V2.csv"(contains the list of words which will be used in the following analysis)
 
-4. Based on "wordList.RMD" to get the new "business_filter.csv" file. (filter some businesses with little reviews)
+4. Based on "./code/wordList.RMD" to get the new "business_filter.csv" file. (filter some businesses with little reviews)
 
 
 *Further analysis:*
