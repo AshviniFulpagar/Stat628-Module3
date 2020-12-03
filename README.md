@@ -24,5 +24,7 @@
 ## Shiny Link
 
 [Shiny App Code](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/shiny.R)
-[Shiny app Readme Guide](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/shiny ReadMe.md)
+
+[Shiny app Readme Guide](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/shiny_ReadMe.md)
+
 [Shiny app for Yelp Map](https://qingchuan-ji.shinyapps.io/STAT628-module3-qingchuan-ji/)
