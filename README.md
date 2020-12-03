@@ -8,7 +8,7 @@
 -  data directory has [clean_data](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/data/clean_data) and [Wordlist](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/data/wordList) which we have used for further sentiment analysis.
 - [Image](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/Image) directory has graphs and other images created while performing analysis
 
-- Code for Shiny app can be found in at [shiny](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/shiny.R), pelase refer [ShinyReadme](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/Shiny_Readme.md)
+- Code for Shiny app can be found in at [shiny](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/shiny.R), please refer [ShinyReadme](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/Shiny_Readme.md)
 
 
 ## How to run the code
