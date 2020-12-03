@@ -20,8 +20,8 @@ library(pluralize)
 ## read data
 
 ```{r}
-review = read.csv("../clean_data/review_Chinese.csv") 
-business = read.csv("../clean_data/business_Chinese.csv")
+review = read.csv("../clean_data/grep/review_Chinese.csv") 
+business = read.csv("../clean_data/grep/business_Chinese.csv")
 ```
 
 
