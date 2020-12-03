@@ -18,9 +18,11 @@
 - Further by using [wordList.RMD](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/wordList.Rmd) to get  [business_filter.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/business_filter.csv) file. (filter some businesses with little reviews) and
 [wordList_V2.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/wordList/wordList_V2.csv)which contains the list of words which will be used in the following analysis.
 
-- Shiny uses [data/clean_data/chinese/business_filter.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/business_filter.csv), [data/clean_data/Chinese/review_Chinese_new.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/review_Chinese_new.csv) and 
+- Further code and Shiny uses [data/clean_data/chinese/business_filter.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/business_filter.csv), [data/clean_data/Chinese/review_Chinese_new.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/review_Chinese_new.csv) and 
 [data/wordList/wordList_V2.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/wordList/wordList_V2.csv) as an input data files.
 
 ## Shiny Link
 
+[Shiny App Code](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/shiny.R)
+[Shiny app Readme Guide](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/shiny ReadMe.md)
 [Shiny app for Yelp Map](https://qingchuan-ji.shinyapps.io/STAT628-module3-qingchuan-ji/)
