@@ -13,13 +13,12 @@
 
 ## How to run the code
 
-- By Using [function_grep.R](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/function_grep.R) you can get the [data/clean_data](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/data/clean_data), and [review_Chinese.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/review_Chinese_new.csv)
+- By Using [function_grep.R](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/function_grep.R) you can get the [clean_data](https://github.com/AshviniFulpagar/Stat628-Module3/tree/main/data/clean_data/grep), and 
 
-- Further by using [wordList.RMD](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/wordList.Rmd) to get  [business_filter.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/business_filter.csv) file. (filter some businesses with little reviews) and
-[wordList_V2.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/wordList/wordList_V2.csv)which contains the list of words which will be used in the following analysis.
+- Further by using [wordList.RMD](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/wordList.Rmd) to get  [business_filter.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/business_filter.csv) file. (filter some businesses with little reviews), [review_Chinese_new.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/review_Chinese_new.csv) and
+[wordList_V2.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/wordList/wordList_V2.csv)which contains the list of words which will be used in the following analysis. These three files will be used in the further analysis.
 
-- Further code and Shiny uses [data/clean_data/chinese/business_filter.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/business_filter.csv), [data/clean_data/Chinese/review_Chinese_new.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/clean_data/Chinese/review_Chinese_new.csv) and 
-[data/wordList/wordList_V2.csv](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/data/wordList/wordList_V2.csv) as an input data files.
+- Use [SentimentAnalysis.R](https://github.com/AshviniFulpagar/Stat628-Module3/blob/main/code/SentimentAnalysis.R) to do further analysis and generate suggestions.
 
 ## Shiny Link
 
