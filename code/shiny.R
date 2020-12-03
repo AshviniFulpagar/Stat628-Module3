@@ -136,7 +136,7 @@ ui <- navbarPage("Yelp data analysis",id="main",
                           p(h4(textOutput("ot11"))),
                           p(h4(textOutput("ot12"))),
                           ),
-                 tabPanel("GUIDE",includeMarkdown("Shiny Readme.md"))
+                 tabPanel("GUIDE",includeMarkdown("Shiny_Readme.md"))
 )
 
 ## ----------------------------------
